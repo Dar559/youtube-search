@@ -3,7 +3,7 @@ import requests
 from datetime import datetime, timedelta
 
 # YouTube API Key
-API_KEY = "AIzaSyCwjz4IXqFMnxPEY7myv-k_KiRqE0L_dmI"
+API_KEY = "Enter your API Key here"
 YOUTUBE_SEARCH_URL = "https://www.googleapis.com/youtube/v3/search"
 YOUTUBE_VIDEO_URL = "https://www.googleapis.com/youtube/v3/videos"
 YOUTUBE_CHANNEL_URL = "https://www.googleapis.com/youtube/v3/channels"
@@ -69,7 +69,7 @@ if st.button("Fetch Data"):
             stats_response = requests.get(YOUTUBE_VIDEO_URL, params=stats_params)
             stats_data = stats_response.json()
 
-            if "items" not in stats_data or not stats_data["items"]]:
+            if "items" not in stats_data or not stats_data["items"]:
                 st.warning(f"Failed to fetch video statistics for keyword: {keyword}")
                 continue
 
@@ -78,7 +78,7 @@ if st.button("Fetch Data"):
             channel_response = requests.get(YOUTUBE_CHANNEL_URL, params=channel_params)
             channel_data = channel_response.json()
 
-            if "items" not in channel_data or not channel_data["items"]]:
+            if "items" not in channel_data or not channel_data["items"]:
                 st.warning(f"Failed to fetch channel statistics for keyword: {keyword}")
                 continue
 
