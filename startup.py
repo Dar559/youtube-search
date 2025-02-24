@@ -87,7 +87,8 @@ if st.button("Fetch Data"):
                 video_url = f"https://www.youtube.com/watch?v={video['id']['videoId']}"
                 views = int(stat["statistics"].get("viewCount", 0))
                 subs = int(channel["statistics"].get("subscriberCount", 0))
-                channel_age = (datetime.utcnow() - datetime.strptime(channel["snippet"]["publishedAt"], "%Y-%m-%dT%H:%M:%SZ")).days
+                channel_published_at = channel["snippet"]["publishedAt"]
+                channel_age = (datetime.utcnow() - datetime.strptime(channel_published_at, "%Y-%m-%dT%H:%M:%S.%fZ")).days
                 video_duration = stat["contentDetails"].get("duration", "PT0M0S")
 
                 # Convert ISO 8601 duration to minutes
