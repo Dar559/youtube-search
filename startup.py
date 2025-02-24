@@ -1,6 +1,7 @@
 import streamlit as st
 import requests
 from datetime import datetime, timedelta
+import isodate
 
 # YouTube API Key
 API_KEY = "AIzaSyCwjz4IXqFMnxPEY7myv-k_KiRqE0L_dmI"
@@ -98,7 +99,8 @@ if st.button("Fetch Data"):
                 video_duration = stat["contentDetails"].get("duration", "PT0M0S")
 
                 # Convert ISO 8601 duration to minutes
-                duration_minutes = int(video_duration[2:].replace("M", "").replace("S", ""))
+                duration_seconds = isodate.parse_duration(video_duration).total_seconds()
+                duration_minutes = duration_seconds / 60
 
                 if 1000 <= subs <= 10000 and channel_age >= 180 and views > 5000 and duration_minutes > 5:
                     all_results.append({
