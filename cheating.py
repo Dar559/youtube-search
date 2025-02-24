@@ -3,7 +3,7 @@ import requests
 from datetime import datetime, timedelta
 
 # YouTube API Key
-API_KEY = "Enter your API Key here"
+API_KEY = "AIzaSyCwjz4IXqFMnxPEY7myv-k_KiRqE0L_dmI"
 YOUTUBE_SEARCH_URL = "https://www.googleapis.com/youtube/v3/search"
 YOUTUBE_VIDEO_URL = "https://www.googleapis.com/youtube/v3/videos"
 YOUTUBE_CHANNEL_URL = "https://www.googleapis.com/youtube/v3/channels"
@@ -93,7 +93,7 @@ if st.button("Fetch Data"):
                 views = int(stat["statistics"].get("viewCount", 0))
                 subs = int(channel["statistics"].get("subscriberCount", 0))
 
-                if subs < 3000:  # Only include channels with fewer than 3,000 subscribers
+                if 1000 < subs < 10000 and views > 10000:  # Filter based on new criteria
                     all_results.append({
                         "Title": title,
                         "Description": description,
@@ -109,13 +109,13 @@ if st.button("Fetch Data"):
                 st.markdown(
                     f"**Title:** {result['Title']}  \n"
                     f"**Description:** {result['Description']}  \n"
-                    f"**URL:** [Watch Video]({result['URL']})  \n"
+                    f"**URL:** Watch Video  \n"
                     f"**Views:** {result['Views']}  \n"
                     f"**Subscribers:** {result['Subscribers']}"
                 )
                 st.write("---")
         else:
-            st.warning("No results found for channels with fewer than 3,000 subscribers.")
+            st.warning("No results found for channels with subscribers between 1,000 and 10,000 and views more than 10,000.")
 
     except Exception as e:
         st.error(f"An error occurred: {e}")
