@@ -88,7 +88,13 @@ if st.button("Fetch Data"):
                 views = int(stat["statistics"].get("viewCount", 0))
                 subs = int(channel["statistics"].get("subscriberCount", 0))
                 channel_published_at = channel["snippet"]["publishedAt"]
-                channel_age = (datetime.utcnow() - datetime.strptime(channel_published_at, "%Y-%m-%dT%H:%M:%S.%fZ")).days
+
+                # Handle different time formats
+                try:
+                    channel_age = (datetime.utcnow() - datetime.strptime(channel_published_at, "%Y-%m-%dT%H:%M:%S.%fZ")).days
+                except ValueError:
+                    channel_age = (datetime.utcnow() - datetime.strptime(channel_published_at, "%Y-%m-%dT%H:%M:%SZ")).days
+
                 video_duration = stat["contentDetails"].get("duration", "PT0M0S")
 
                 # Convert ISO 8601 duration to minutes
