@@ -2,7 +2,7 @@ import streamlit as st
 import requests
 from datetime import datetime, timedelta
 import isodate
-
+pip install isodate
 # YouTube API Key
 API_KEY = "AIzaSyCwjz4IXqFMnxPEY7myv-k_KiRqE0L_dmI"
 YOUTUBE_SEARCH_URL = "https://www.googleapis.com/youtube/v3/search"
